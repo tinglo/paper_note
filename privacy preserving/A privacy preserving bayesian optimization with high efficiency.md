@@ -1,0 +1,28 @@
+## A privacy preserving bayesian optimization with high efficiency
+
+- **Conference**
+    - PAKDD 2018 (best paper)
+- **Author**
+    - Thanh Dai Nguyen, Sunil Gupta, Santu Rana, and Svetha Venkatesh
+        - Center for Pattern Recognition and Data Analytics,
+        - Deakin University, Waurn Ponds 3216, Australia
+- **Note**
+    - 主要認為scenario可參考
+    - 前提：
+        - 在工廠生產產品的應用上，需要決定材料的組成(x, 各種所需材料占的比例)以生產出理想的產品(y, 生產出的鐵是否夠硬等等)。
+        - 但因為一次的產品製作過程cost太高(ex:需要花費很多時間)，所以並不能random的去試所有x
+        - 因此需要一個optimizer去推薦下一個應該嘗試的x為何，希望以最少的嘗試次數來最快得到想要的y → bayesian optimization 基本概念
+    - 本篇paper主要要解的問題為：
+        - 通常工廠並沒有技術可以做bayesian optimization，此時optimizer的工作就會交給第三方處理，而工廠本身則為experimenter
+        - 為了防止工廠技術外流(privacy preserving)，避免讓optimizer知道**此次**嘗試的組成x以及結果y為何，需要對此次的結果y加上noise
+        - **希望在一定的隱私保護下，以最少的嘗試次數，來得到最好的結果** → **需要決定對結果的干擾程度**
+    - 本篇提出雖然已有differential privacy這樣的privacy preserving framework，但因為differential privacy可以容忍這次測試結果的誤差大過上次測試結果(有個upper bound)，雖然這表示了因為noise加入的多，對結果有一定的隱私保護，但卻造成需要更多次的測試才能達到想要的結果
+    - 因此此paper提出了**EPP-BO(Error Preserving Private Bayesian Optimization)架構**，能以更少的次數來達到理想結果
+- **Datasets**
+    - Alloy heat treatment
+        - A simulation model of an AI-Sc alloy heat treatment process.
+    - Short polumer fiber production
+        - This dataset was collected in a collaboration with material scientist from Deaking University.
+- **Others**
+    - [贝叶斯优化 Bayesian Optimization](https://www.imooc.com/article/36754)
+    - [differential privacy (wiki)](https://zh.wikipedia.org/wiki/差分隐私)
